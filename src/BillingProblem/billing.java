@@ -20,10 +20,10 @@ public class billing {
      BillingMethodes b = null;
 
 
-    public  int calaulatedTax(int Units ,int TaxableValue ,String Product){
-        int TaxPersentage = TaxPersent.get(Product);
-        int TaxAmount = (Units * TaxableValue)*TaxPersentage/100;
-        int finalTaxAmount = TaxAmount + (Units * TaxableValue);
+    public  double calaulatedTax(double Units ,double TaxableValue ,String Product){
+        double TaxPersentage = TaxPersent.get(Product);
+        double TaxAmount = (Units * TaxableValue)*TaxPersentage/100;
+        double finalTaxAmount = TaxAmount + (Units * TaxableValue);
 
         return finalTaxAmount;
     }
@@ -41,18 +41,23 @@ public class billing {
         b.Product.put("chao",100);
         b.TaxPersent.put("chao",5);
 
+        
+      
     }
+
 public void run(BillingMethodes c){
-    int Quantity=0;
-    int TotalAmount=0;
+   int Quantity=0;
+    double TotalAmount=0;
+    double TotalTax=0;
     BillingMethodes b = c;
     Scanner input = new Scanner(System.in);
+    //Adding the values in map
     b.AddProduct(b);
-    System.out.println("Product List :"+b.Product.toString());
 
+    System.out.println("Product List :"+b.Product.toString());
     System.out.println("Enter the Number of products you want to add to the list ");
     Quantity = input.nextInt();
-    String list[]=new String[Quantity];
+    String list[]=new String[Integer.parseInt(Quantity+"")];
     System.out.println("----------------------------------------------------");
     input.nextLine();
 
@@ -63,25 +68,27 @@ public void run(BillingMethodes c){
 
         if (b.Product.containsKey(product)) {
             System.out.println("Enter number of quantity :");
-            int num = input.nextInt();
+           int num = input.nextInt();
             input.nextLine();
-            int Final_Value = b.calaulatedTax(num, b.Product.get(product), product);
+            double Final_Value = b.calaulatedTax(num, b.Product.get(product), product);
             String outString = "Sr.No: " + (i+1) + "| Product Name: " + product +"| Price: "
                     +b.Product.get(product) +"| Quantity: " + num + "| Tax%: " +
                     b.TaxPersent.get(product) + "%" + "| FinalPrice: " + Final_Value;
             list[i] = outString;
             TotalAmount += Final_Value;
+            TotalTax += Final_Value-(num*b.Product.get(product));
         } else {
             System.out.println("Product not found");
             i--;
         }
     }
 
+    // Printing Final Output
     System.out.println("-----------------------------------------------------------");
     for(String s:list){
         System.out.println(s);
     }
-    System.out.println("Total Amount : "+TotalAmount);
+    System.out.println(" Total CGST :"+(Math.round(TotalTax/2))+" Total SGST :"+(Math.round(TotalTax/2)) + " Total Amount : "+TotalAmount);
 }
 }
 
