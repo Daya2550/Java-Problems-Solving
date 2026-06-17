@@ -29,6 +29,7 @@ public class billing {
     }
 
     public void AddProduct(BillingMethodes b){
+
         b.Product.put("chai",50);
         b.TaxPersent.put("chai",10);
 
@@ -41,8 +42,6 @@ public class billing {
         b.Product.put("chao",100);
         b.TaxPersent.put("chao",5);
 
-        
-      
     }
 
 public void run(BillingMethodes c){
