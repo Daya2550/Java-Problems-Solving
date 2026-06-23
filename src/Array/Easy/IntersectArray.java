@@ -1,4 +1,4 @@
-package Array;
+package Array.Easy;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,7 @@ public class IntersectArray {
                 list.add(a[i]);
             }
         }
+
         for(int i=0;i<b.length;i++){
             if(list.contains(b[i])){
                 System.out.print(b[i]+" ");

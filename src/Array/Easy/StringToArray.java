@@ -1,6 +1,4 @@
-package Array;
-
-import java.util.Arrays;
+package Array.Easy;
 
 public class StringToArray {
     public static void main(String[] args) {
