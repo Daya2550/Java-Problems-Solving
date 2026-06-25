@@ -1,5 +1,6 @@
 package Array.Easy;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class IntersectArray {
@@ -13,11 +14,13 @@ public class IntersectArray {
             }
         }
 
+
         for(int i=0;i<b.length;i++){
             if(list.contains(b[i])){
                 System.out.print(b[i]+" ");
             }
         }
+
         System.out.println(list);
     }
 }
